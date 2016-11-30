@@ -5,8 +5,86 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:jacobs33_Final"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Budget Manager" 
+        Height="700"
+        Width="900"
+        ResizeMode="CanMinimize">
     <Grid>
-        
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" />
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Save" />
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Sheet">
+                    <MenuItem Header="_Add Line Item" />
+                    <MenuItem Header="_Clear Line Items" />
+                </MenuItem>
+            </Menu>
+            <TextBox AcceptsReturn="True" IsEnabled="False" />
+        </DockPanel>
+
+        <DataGrid AutoGenerateColumns="False" 
+            Height="450" 
+            HorizontalAlignment="Left" 
+            Name="dgBudgetSheets" 
+            VerticalAlignment="Top" 
+            Width="175" 
+            Margin="10,30,0,0" 
+            GridLinesVisibility="Vertical">
+            <DataGrid.Columns >
+                <DataGridTextColumn Width="*" Header="Budget Sheets" CanUserResize="False"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid AutoGenerateColumns="False" 
+            Height="450" 
+            HorizontalAlignment="Left" 
+            Name="dgLineItems" 
+            VerticalAlignment="Top" 
+            Width="400" 
+            Margin="200,30,0,0" 
+            GridLinesVisibility="Vertical">
+            <DataGrid.Columns >
+                <DataGridTextColumn Width="*" Header="Name" CanUserResize="True"/>
+                <DataGridTextColumn Width="*" Header="Type" CanUserResize="True"/>
+                <DataGridTextColumn Width="*" Header="Amount" CanUserResize="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+
+        <Label x:Name="lblAppInfo" 
+               Content="Budget Management Tool&#xD;&#xA;Created by Taylor Jacobson" 
+               Width="150" 
+               Height="45"
+               FontSize="11" 
+               RenderTransformOrigin="2.171,-3.5" 
+               Margin="735,615,10,10"/>
+        <Label x:Name="lblFilters" Content="Filters" Margin="200,480,0,0"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="140" Margin="200,500,0,0" VerticalAlignment="Top" Width="400">
+            <ComboBox x:Name="cbTypeSelector" Width="100" Height="18">
+                <CheckBox Width="20" />
+                <TextBlock Text="Test 1" Width="100" />
+                <!--<ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>-->
+            </ComboBox>
+
+        </Border>
+
+
+
     </Grid>
+
+    
 </Window>
+
+
