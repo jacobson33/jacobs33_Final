@@ -20,8 +20,7 @@ namespace jacobs33_Final.Models
         private string _description;
         private LineItemType _itemType;
         private double _itemAmount;
-        private int _itemGroup;
-        private bool _preTax;
+        private int _id;
         #endregion
 
         #region Properties
@@ -45,15 +44,10 @@ namespace jacobs33_Final.Models
             get { return _itemAmount; }
             set { _itemAmount = value; }
         }
-        public int ItemGroup
+        public int ID
         {
-            get { return _itemGroup; }
-            set { _itemGroup = value; }
-        }
-        public bool PreTax
-        {
-            get { return _preTax; }
-            set { _preTax = value; }
+            get { return _id; }
+            set { _id = value; }
         }
         #endregion
 

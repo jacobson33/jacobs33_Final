@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BudgetSheet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Sheet 1</Name>
+  <Description>Testing 22323</Description>
+  <BudgetItems>
+    <LineItem>
+      <Name>Paycheck 1</Name>
+      <Description>My first paycheck</Description>
+      <ItemType>Income</ItemType>
+      <ItemAmount>500</ItemAmount>
+      <ID>1</ID>
+    </LineItem>
+    <LineItem>
+      <Name>Paycheck 2</Name>
+      <Description>My second paycheck</Description>
+      <ItemType>Income</ItemType>
+      <ItemAmount>500</ItemAmount>
+      <ID>2</ID>
+    </LineItem>
+    <LineItem>
+      <Name>Phone</Name>
+      <Description>Phone bill</Description>
+      <ItemType>Expense</ItemType>
+      <ItemAmount>100</ItemAmount>
+      <ID>3</ID>
+    </LineItem>
+    <LineItem>
+      <Name>Car</Name>
+      <Description>Car bill</Description>
+      <ItemType>Expense</ItemType>
+      <ItemAmount>200</ItemAmount>
+      <ID>4</ID>
+    </LineItem>
+    <LineItem>
+      <Name>Gas</Name>
+      <Description>Gasoline for my car</Description>
+      <ItemType>Expense</ItemType>
+      <ItemAmount>80</ItemAmount>
+      <ID>5</ID>
+    </LineItem>
+  </BudgetItems>
+</BudgetSheet>

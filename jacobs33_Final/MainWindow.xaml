@@ -10,81 +10,73 @@
         Width="900"
         ResizeMode="CanMinimize">
     <Grid>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_File">
-                    <MenuItem Header="_New" />
-                    <MenuItem Header="_Open" />
-                    <MenuItem Header="_Save" />
-                    <Separator />
-                    <MenuItem Header="_Exit" />
-                </MenuItem>
-                <MenuItem Header="_Sheet">
-                    <MenuItem Header="_Add Line Item" />
-                    <MenuItem Header="_Clear Line Items" />
-                </MenuItem>
-            </Menu>
-            <TextBox AcceptsReturn="True" IsEnabled="False" />
-        </DockPanel>
-
         <DataGrid AutoGenerateColumns="False" 
             Height="450" 
             HorizontalAlignment="Left" 
-            Name="dgBudgetSheets" 
+            x:Name="dgBudgetSheets" 
             VerticalAlignment="Top" 
             Width="175" 
             Margin="10,30,0,0" 
-            GridLinesVisibility="Vertical">
+            GridLinesVisibility="Vertical" SelectionChanged="dgBudgetSheets_SelectionChanged">
             <DataGrid.Columns >
-                <DataGridTextColumn Width="*" Header="Budget Sheets" CanUserResize="False"/>
+                <DataGridTextColumn Width="*" Header="Budget Sheets" IsReadOnly="True" CanUserResize="False" Binding="{Binding}"/>
             </DataGrid.Columns>
         </DataGrid>
-
         <DataGrid AutoGenerateColumns="False" 
             Height="450" 
             HorizontalAlignment="Left" 
-            Name="dgLineItems" 
+            x:Name="dgLineItems" 
             VerticalAlignment="Top" 
             Width="400" 
             Margin="200,30,0,0" 
-            GridLinesVisibility="Vertical">
+            GridLinesVisibility="Vertical"
+            IsReadOnly="True" SelectionChanged="dgLineItems_SelectionChanged"      >
             <DataGrid.Columns >
-                <DataGridTextColumn Width="*" Header="Name" CanUserResize="True"/>
-                <DataGridTextColumn Width="*" Header="Type" CanUserResize="True"/>
-                <DataGridTextColumn Width="*" Header="Amount" CanUserResize="True"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Name" CanUserResize="True" x:Name="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Visibility="Hidden" Header="Name" CanUserResize="True" x:Name="Description" Binding="{Binding Description}"/>
+                <DataGridTextColumn Width="*" Header="Name" CanUserResize="True" x:Name="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Width="*" Header="Type" CanUserResize="True" x:Name="ItemType" Binding="{Binding ItemType}"/>
+                <DataGridTextColumn Width="*" Header="Amount" CanUserResize="True" x:Name="ItemAmount" Binding="{Binding ItemAmount}"/>
             </DataGrid.Columns>
         </DataGrid>
-
-
-
         <Label x:Name="lblAppInfo" 
-               Content="Budget Management Tool&#xD;&#xA;Created by Taylor Jacobson" 
-               Width="150" 
-               Height="45"
+               Content="Budget Management Tool&#xD;&#xA;Created by Taylor Jacobson&#xD;&#xA;ver. 0.00001" 
+               Width="150"
                FontSize="11" 
                RenderTransformOrigin="2.171,-3.5" 
-               Margin="735,615,10,10"/>
+               Margin="735,616,9,0"/>
         <Label x:Name="lblFilters" Content="Filters" Margin="200,480,0,0"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="140" Margin="200,500,0,0" VerticalAlignment="Top" Width="400">
-            <ComboBox x:Name="cbTypeSelector" Width="100" Height="18">
-                <CheckBox Width="20" />
-                <TextBlock Text="Test 1" Width="100" />
-                <!--<ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>-->
+            <ComboBox x:Name="cbTypeSelector" Height="24" Margin="52,16,224,98" DropDownClosed="cbTypeSelector_SelectionChanged">
+                <ComboBoxItem Name="cbiAll">All</ComboBoxItem>
+                <ComboBoxItem Name="cbiNone">None</ComboBoxItem>
+                <ComboBoxItem Name="cbiIncome">Income</ComboBoxItem>
+                <ComboBoxItem Name="cbiExpense">Expense</ComboBoxItem>
+                <ComboBoxItem Name="cbiOther">Other</ComboBoxItem>
             </ComboBox>
 
         </Border>
 
-
-
+        <TextBox Margin="699,56,24,580" Name="tbName" BorderThickness="1" BorderBrush="Black" TextChanged="tbName_TextChanged" />
+        <TextBox Margin="699,91,24,484" Name="tbDescription" TextWrapping="WrapWithOverflow" BorderThickness="1" BorderBrush="Black" SpellCheck.IsEnabled="True" TextChanged="tbDescription_TextChanged"/>
+        <TextBox Margin="699,193,24,447" Name="tbAmount" BorderThickness="1" BorderBrush="Black" PreviewTextInput="NumberValidationTextBox" TextAlignment="Right" TextChanged="tbAmount_TextChanged" />
+        <ComboBox Name="cbLineItemType" Margin="699,222,24,420" ToolTip="Type of line item" DropDownClosed="cbLineItemType_DropDownClosed">
+            <ComboBoxItem Name="cbi2None">None</ComboBoxItem>
+            <ComboBoxItem Name="cbi2Income">Income</ComboBoxItem>
+            <ComboBoxItem Name="cbi2Expense">Expense</ComboBoxItem>
+            <ComboBoxItem Name="cbi2Other">Other</ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="label_Name" Content="Name" HorizontalAlignment="Left" Margin="623,56,0,0" VerticalAlignment="Top" Width="60" Height="26"/>
+        <Label x:Name="label_Description" Content="Description" HorizontalAlignment="Left" Margin="623,87,0,0" VerticalAlignment="Top" Width="71" Height="29"/>
+        <Label x:Name="label_Amount" Content="Amount" HorizontalAlignment="Left" Margin="623,188,0,0" VerticalAlignment="Top" Width="60" Height="29"/>
+        <Label x:Name="label_Type1" Content="Type" HorizontalAlignment="Left" Margin="623,217,0,0" VerticalAlignment="Top" Width="60" Height="29"/>
+        <Button x:Name="btnNewItem" Content="New Line Item" HorizontalAlignment="Left" Margin="699,311,0,0" VerticalAlignment="Top" Width="98" Height="32" Click="btnNewItem_Click"/>
+        <Button x:Name="btnSaveSheet" Content="Save Budget Sheet" HorizontalAlignment="Left" Margin="690,448,0,0" VerticalAlignment="Top" Width="124" Height="32" Click="btnSaveSheet_Click"/>
+        <Label x:Name="label_Type2" Content="Type" HorizontalAlignment="Left" Margin="209,513,0,0" VerticalAlignment="Top" Width="60" Height="29"/>
+        <Button x:Name="btnRemoveLineItem" Content="Remove Item" HorizontalAlignment="Left" Margin="699,264,0,0" VerticalAlignment="Top" Width="98" Height="32" Click="btnRemoveLineItem_Click"/>
     </Grid>
 
-    
+
 </Window>
 
 

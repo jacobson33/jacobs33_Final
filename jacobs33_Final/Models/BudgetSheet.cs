@@ -52,14 +52,14 @@ namespace jacobs33_Final.Models
         #endregion
 
         #region Methods
-        public void SaveBudgetSheet()
+        public void AddNewLineItem()
         {
+            LineItem newItem = new LineItem();
+            newItem.Name = "New Line Item";
+            newItem.ItemType = LineItem.LineItemType.None;
+            newItem.ID = BudgetItems.Max(x => x.ID) + 1;
 
-        }
-
-        public void LoadBudgetSheet()
-        {
-
+            BudgetItems.Add(newItem);
         }
         #endregion
     }

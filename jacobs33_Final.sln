@@ -6,6 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jacobs33_Final", "jacobs33_Final\jacobs33_Final.csproj", "{6872F86C-CAA6-42DF-8855-6ED8B4967305}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{25B0FDA1-EB90-4857-B6D7-79509B0E8F84}"
+	ProjectSection(SolutionItems) = preProject
+		jacobs33_Final\ClassDiagram.cd = jacobs33_Final\ClassDiagram.cd
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
